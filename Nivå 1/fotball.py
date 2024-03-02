@@ -8,11 +8,12 @@ import requests, os, bs4
 
 url = 'https://www.fotmob.com/en-GB/teams/8456/squad/manchester-city'
 res = requests.get(url)#, headers=headers)
+#bs4 leser og hjelper med å filtrere søk i html kode
 soup = bs4.BeautifulSoup(res.text, 'html.parser')
 
-divs = soup.find_all("span", class_="css-10e7ss7-Name e11hu58l0")
+spans = soup.find_all("span", class_="css-10e7ss7-Name e11hu58l0")
 
-for players in divs:
+for players in spans:
     #Finn teksten mellom <span class...> DENNE TEKSTEN </span>
     navn = players.get_text()
 
